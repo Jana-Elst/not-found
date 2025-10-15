@@ -276,4 +276,5 @@ const draw = () => {
     requestAnimationFrame(draw);
 }
 
+console.log('load script');
 draw();
