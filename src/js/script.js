@@ -3,6 +3,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
+import logoSVG from '../../public/assets/logo.svg'
+import light from '../../public/assets/studio_small_09_1k.jpeg'
+
 import vertexShader from './shaders/vertex.glsl?raw';
 import fragmentShader from './shaders/fragment.glsl?raw'
 
@@ -93,7 +96,7 @@ renderer.setClearColor(0xffffff, 0); // (color, alpha), transparent? alpha -> 0
 
 const textureLoader = new THREE.TextureLoader();
 textureLoader.load(
-    './public/assets/studio_small_09_1k.jpeg',
+    light,
     (envTexture) => {
         envTexture.mapping = THREE.EquirectangularReflectionMapping;
         envTexture.colorSpace = THREE.SRGBColorSpace;
@@ -105,7 +108,7 @@ textureLoader.load(
 //create model
 const loader = new SVGLoader();
 loader.load(
-    './public/assets/logo.svg',
+    logoSVG,
     (data) => {
         //get paths
         const paths = data.paths;
