@@ -93,7 +93,7 @@ renderer.setClearColor(0xffffff, 0); // (color, alpha), transparent? alpha -> 0
 
 const textureLoader = new THREE.TextureLoader();
 textureLoader.load(
-    './src/assets/studio_small_09_1k.jpeg',
+    './public/assets/studio_small_09_1k.jpeg',
     (envTexture) => {
         envTexture.mapping = THREE.EquirectangularReflectionMapping;
         envTexture.colorSpace = THREE.SRGBColorSpace;
@@ -105,7 +105,7 @@ textureLoader.load(
 //create model
 const loader = new SVGLoader();
 loader.load(
-    './src/assets/logo.svg',
+    './public/assets/logo.svg',
     (data) => {
         //get paths
         const paths = data.paths;
