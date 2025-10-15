@@ -29,33 +29,33 @@ let mouseY = 0;
 
 //model
 let svgGroup;
-let scaleModel = 0.1;
-let cameraZoom = 15;
+const scaleModel = 0.1;
+const cameraZoom = 15;
 
 //material model
-let materialColor = 0xeeeeee;
-let roughness = 0.25;
-let metalness = 1.0;
-let envMapIntensity = 1.5;
+const materialColor = 0xeeeeee;
+const roughness = 0.25;
+const metalness = 1.0;
+const envMapIntensity = 1.5;
 
 //extrusion
-let depth = 8;
-let curveSegments = 24;
-let bevelSize = 1;
-let bevelThickness = 0;
-let bevelSegments = 1;
+const depth = 8;
+const curveSegments = 24;
+const bevelSize = 1;
+const bevelThickness = 0;
+const bevelSegments = 1;
 
 const clock = new THREE.Clock();
 
 //shader
-let noise = 0.2;
-let darken = 0.0;
-let denominator = { x: 213.0, y: 5.53 };
-let negX = { x: -1.0, y: 1.0 };
-let negY = { x: 1.0, y: -1.0 };
-let glitchOffset1 = { x: 32.05, y: 236.0 };
-let glitchOffset2 = { x: -62.05, y: -36.0 };
-let randSeeds = { x: 12.9898, y: 78.233 };
+const noise = 0.2;
+const darken = 0.0;
+const denominator = { x: 213.0, y: 5.53 };
+const negX = { x: -1.0, y: 1.0 };
+const negY = { x: 1.0, y: -1.0 };
+const glitchOffset1 = { x: 32.05, y: 236.0 };
+const glitchOffset2 = { x: -62.05, y: -36.0 };
+const randSeeds = { x: 12.9898, y: 78.233 };
 
 let scanline = 0.6; //value between -0.9 - 0.9
 let yScanline = 700; //value between -1000 - 1000 tientallen?
