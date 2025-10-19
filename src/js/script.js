@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
 
@@ -77,7 +77,7 @@ const camera = new THREE.PerspectiveCamera(45, size.width / size.height, 0.1, 10
 camera.position.set(0, 0, cameraZoom);
 scene.add(camera);
 
-//add mouse manipulation -- remove it? maybe?
+//add mouse manipulation -- if you want to turn and zoom the model
 // const controls = new OrbitControls(camera, canvas);
 // controls.enableDamping = true;
 
@@ -91,9 +91,9 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(size.width, size.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 renderer.physicallyCorrectLights = true; //play with this
-renderer.autoClear = false; //play with this
 renderer.setClearColor(0xffffff, 0); // (color, alpha), transparent? alpha -> 0
 
+//load environment
 const textureLoader = new THREE.TextureLoader();
 textureLoader.load(
     light,
@@ -239,10 +239,10 @@ const resize = () => {
     renderer.setSize(rect.width, rect.height, false)
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
+    //update the shader
     shaderTarget.setSize(size.width, size.height);
     shaderTarget.dispose();
 
-    //update the shader
     shaderMaterial.uniforms.iResolution.value.set(size.width, size.height);
     shaderMaterial.uniforms.u_textureResolution.value.set(size.width, size.height);
 }
@@ -252,10 +252,10 @@ window.addEventListener('resize', resize);
 
 //-------------------- draw --------------------//
 const draw = () => {
-    const elapsedTime = clock.getElapsedTime();
+    const time = clock.getElapsedTime();
 
     if (svgGroup) {
-        rotateModel(svgGroup, elapsedTime);
+        rotateModel(svgGroup, time);
     }
 
     //update variables
@@ -273,11 +273,10 @@ const draw = () => {
     renderer.setRenderTarget(null);
     renderer.clear();
 
-    shaderMaterial.uniforms.iTime.value = elapsedTime;
+    shaderMaterial.uniforms.iTime.value = time;
     renderer.render(sceneWithShader, cameraSceneWithShader);
 
     requestAnimationFrame(draw);
 }
 
-console.log('load script');
 draw();
